@@ -42,6 +42,9 @@ public class Resources {
 	
 	protected BestFitness fitnessOrientation;
 	
+	// used for thresholding in IP problems
+	protected double threshold;
+	
 	/**
 	 * @return the number of rows.
 	 */
@@ -147,6 +150,30 @@ public class Resources {
 		return fitnessOrientation;
 	}
 	
+	
+	/**
+	 * @return the threshold value.
+	 */
+	public double threshold() {
+		return threshold;
+	}
+	
+	
+	/**
+	 * Sets the threshold value to be used in image thresholding.
+	 * 
+	 * @param threshold the new threshold value.
+	 */
+	public void setThreshold(double threshold) {
+		
+		if (threshold < 0)
+			this.threshold = 0;
+		else if (threshold > 255)
+			this.threshold = 255;
+		else 
+			this.threshold = threshold;
+	}
+	
 	/*
 	 * Utility functions
 	 */
@@ -162,6 +189,21 @@ public class Resources {
 		return numberGenerator.nextInt(limit);
 	}
 	
+	
+	/**
+	 * Gets the next random integer using the experiment's random
+	 * number generator. The integer returned will be between min (inclusive)
+	 * and max (exclusive).
+	 * 
+	 * @param min the lower bound.
+	 * @param max the upper bound.
+	 * @return a random integer between min and max.
+	 */	
+	public int getRandomInt(int min, int max) {
+		return numberGenerator.nextInt(max - min) + min;
+	}
+	
+	
 	/**
 	 * Gets the next random double using the experiment's random
 	 * number generator. The double returned will be between 0 (inclusive)
@@ -172,6 +214,11 @@ public class Resources {
 	 */
 	public double getRandomDouble(int limit) {
 		return numberGenerator.nextDouble() * limit;
+	}
+	
+	
+	public double getRandomDouble(double min, double max) {
+		return min + (max - min) * numberGenerator.nextDouble();
 	}
 	
 	/**

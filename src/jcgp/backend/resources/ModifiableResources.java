@@ -253,6 +253,7 @@ public class ModifiableResources extends Resources {
 	public void setConsole(Console console) {
 		this.console = console;
 	}
+		
 	
 	/**
 	 * For internal use only, this initialises all base parameters to default values.
@@ -376,5 +377,8 @@ public class ModifiableResources extends Resources {
 				}
 			}
 		};
+		
+		threshold = super.getRandomInt(0, 256);
+		
 	}
 }
